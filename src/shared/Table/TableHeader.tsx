@@ -6,7 +6,7 @@ interface TableHeaderProps {
 
 export function TableHeader({ children }: TableHeaderProps) {
     return (
-        <thead className="bg-zinc-50 text-zinc-800 border-b">
+        <thead className="bg-zinc-50 border-b">
             {children}
         </thead>
     )

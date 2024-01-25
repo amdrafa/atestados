@@ -6,7 +6,7 @@ interface TableColumnHeaderCellProps {
 
 export function TableColumnHeaderCell({ children }: TableColumnHeaderCellProps) {
     return (
-        <th className="py-2 px-4 text-left border-b text-zinc-600 font-semibold">
+        <th className="py-2 px-4 text-left border-b text-zinc-500 font-normal text-xs">
             {children}
         </th>
     )

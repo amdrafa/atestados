@@ -6,7 +6,7 @@ interface PageActionProps {
 
 export function PageActions({ children }: PageActionProps) {
     return (
-        <div className="flex items-center justify-end gap-2 pt-5">
+        <div className="flex justify-end gap-2 pt-5">
             {children}
         </div>
     )

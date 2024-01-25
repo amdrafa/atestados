@@ -6,7 +6,7 @@ interface TableRowProps {
 
 export function TableRow({ children }: TableRowProps) {
     return (
-        <tr className="hover:bg-zinc-100">
+        <tr className="text-zinc-600 hover:bg-slate-50 h-20">
             {children}
         </tr>
     )
