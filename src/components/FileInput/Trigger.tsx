@@ -1,10 +1,10 @@
 import { UploadCloud } from "lucide-react";
-import { useFileInput } from "./Root";
+import { useFileForm } from "../../contexts/FileFormContext.tsx/context";
 
 
 export function Trigger() {
 
-    const { id } = useFileInput()
+    const { id } = useFileForm()
 
     return (
         <label htmlFor={id} className="group flex flex-1 cursor-pointer flex-col items-center gap-3 rounded-lg border border-zinc-300 px-6 py-4 text-center text-zinc-500 shadow-sm hover:border-primary-50 hover:bg-primary-25 hover:text-primary-500 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-violet-300">

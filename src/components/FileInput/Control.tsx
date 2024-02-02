@@ -1,11 +1,11 @@
 import { ChangeEvent, ComponentProps } from "react"
-import { useFileInput } from "./Root"
+import { useFileForm } from "../../contexts/FileFormContext.tsx/context";
 
 export type ControlProps = ComponentProps<'input'>
 
 export function Control({ multiple = false, ...props }: ControlProps) {
 
-    const { id, onFilesSelected } = useFileInput()
+    const { id, onFilesSelected } = useFileForm()
 
     function handleFilesSelected(event: ChangeEvent<HTMLInputElement>) {
         if (!event.target.files?.length) {

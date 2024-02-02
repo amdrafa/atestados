@@ -2,14 +2,12 @@ import * as Progress from '@radix-ui/react-progress';
 
 interface ProgressStepperProps {
     progress: number;
-    step: number;
-    totalSteps: number;
 }
 
-export function ProgressStepper({ progress, totalSteps, step }: ProgressStepperProps) {
+export function ProgressStepper({ progress }: ProgressStepperProps) {
     return (
         <div className='flex items-center lg:grid lg:grid-cols-form gap-3 bg-primary-25 p-4 rounded-lg'>
-            <div className='whitespace-nowrap text-zinc-600'>Step {step} of {totalSteps}</div>
+            <div className='whitespace-nowrap text-zinc-600'>Stage {progress} of 100%</div>
             <Progress.Root
                 className="relative overflow-hidden bg-primary-50 rounded-full w-full h-[25px]"
                 style={{

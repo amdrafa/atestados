@@ -24,7 +24,7 @@ export function FileItem({ name, size }: FileItemProps) {
             </div>
             <div className="flex flex-1 flex-col items-start gap-1">
                 <div className="flex flex-col">
-                    <span className="text-sm font-medium text-zinc-700">{name}</span>
+                    <span className="text-sm font-medium text-zinc-700">{name.length > 30 ? name.slice(0, 28) + '...' : name}</span>
                     <span className="text-sm text-zinc-500">{formatBytes(size)}</span>
                 </div>
 

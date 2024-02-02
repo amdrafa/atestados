@@ -1,10 +1,10 @@
 import { User } from "lucide-react";
-import { useFileInput } from "./Root";
+import { useFileForm } from "../../contexts/FileFormContext.tsx/context";
 import { useMemo } from "react";
 
 export function ImagePreview() {
 
-    const { files } = useFileInput()
+    const { files } = useFileForm()
 
     const previewUrl = useMemo(() => {
         if (files.length === 0) {

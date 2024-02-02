@@ -11,41 +11,30 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RequestUploadAdvice } from '../../components/RequestUploadAdvice';
-import { useFileInput } from '../../components/FileInput/Root';
+import { useFileForm } from '../../contexts/FileFormContext.tsx/context';
+import { toast } from 'react-toastify';
 
 
 export function UserRequestCreate() {
 
-    const maxFileSize = 2000000
-    const acceptedImageTypes = [
-        'image/jpeg',
-        'image/jpg',
-        'image/png',
-        'image/webp',
-    ]
+    const totalSteps = 5;
 
-    const { files } = useFileInput()
+    const { files } = useFileForm()
 
-    const [progress, setProgress] = useState(0);
+    const [progress, setProgress] = useState(100 / totalSteps);
 
-    const [filetest, setfiletest] = useState<FileList | null>()
+    function nextStep() {
+        if (progress < 100) {
+            setProgress(progress + (100 / totalSteps))
+        }
+    }
 
-    useEffect(() => {
-        const timer = setTimeout(() => setProgress(25), 500);
-        return () => clearTimeout(timer);
-    }, []);
+    function backStep() {
+        if (progress > 0) {
+            setProgress(progress - (100 / totalSteps))
+        }
+    }
 
-    const imageSchema = z.any()
-        // To not allow empty files
-        .refine((files) => files?.length >= 1, { message: 'Photo is required.' })
-        // To not allow files other than images
-        .refine((files) => acceptedImageTypes.includes(files?.[0]?.type), {
-            message: '.jpg, .jpeg, .png and .webp files are accepted.',
-        })
-        // To not allow files larger than 5MB
-        .refine((files) => files?.[0]?.size <= maxFileSize, {
-            message: `Max file size is 2MB.`,
-        }).optional()
 
     const newRequestSchema = z.object({
         issuerName: z.string().min(6, "O nome deve ter no mínimo 6 caracteres."),
@@ -54,7 +43,6 @@ export function UserRequestCreate() {
         register: z.string(),
         leaveCommencement: z.string(),
         leaveTermination: z.string(),
-        image: imageSchema
     });
 
     type newRequestFormData = z.infer<typeof newRequestSchema>
@@ -67,10 +55,16 @@ export function UserRequestCreate() {
         resolver: zodResolver(newRequestSchema),
     });
 
-    function handleSubmitTest(e: unknown) {
+    function handleSubmitTest(data: newRequestFormData) {
+        if (!files) {
+            toast.error('Envie o arquivo do atestado.')
+            return;
+        }
         console.log(files)
-        // console.log(e)
+        console.log(data)
     }
+
+
 
 
     return (
@@ -79,8 +73,6 @@ export function UserRequestCreate() {
             <Page.Content>
                 <ProgressStepper
                     progress={progress}
-                    step={1}
-                    totalSteps={4}
                 />
 
 
@@ -99,12 +91,10 @@ export function UserRequestCreate() {
                             <FileInput.Control
                             />
                         </FileInput.Root>
-                        {/* <Input.ErrorMessage>
-                        </Input.ErrorMessage> */}
                     </Form.Grid>
 
 
-                    <Form.Grid>
+                    {/* <Form.Grid>
                         <Form.Label htmlFor='issuerName'>Issuer's name</Form.Label>
                         <Input.Root >
                             <Input.Control
@@ -202,15 +192,15 @@ export function UserRequestCreate() {
                         <Input.ErrorMessage>
                             {errors.leaveTermination?.message}
                         </Input.ErrorMessage>
-                    </Form.Grid>
+                    </Form.Grid> */}
 
 
 
 
 
                     <Page.Actions>
-                        <Button variant="outline">Cancel</Button>
-                        <Button type='submit' variant="primary">Next</Button>
+                        <Button onClick={() => backStep()} variant="outline">Return</Button>
+                        <Button onClick={() => nextStep()} variant="primary">Next</Button>
                     </Page.Actions>
                 </Form.Root>
             </Page.Content>

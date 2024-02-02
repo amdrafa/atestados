@@ -7,13 +7,12 @@ import { Users } from "./pages/users";
 import { UserForm } from "./pages/users/UserForm";
 import { UserRequests } from "./pages/userRequests";
 import { UserRequestCreate } from "./pages/userRequests/create";
-import * as FileInput from './components/FileInput'
+import { FileFormContextProvider } from "./contexts/FileFormContext.tsx/context";
 
 export function Router() {
     return (
-        <FileInput.Root>
+        <FileFormContextProvider>
             <Routes>
-
                 <Route path="/" element={<Layout><Home /></Layout>} />
                 <Route path="/adminRequests" element={<Layout><Requests /></Layout>} />
                 <Route path="/adminRequests/:id" element={<Layout><RequestDetail /></Layout>} />
@@ -21,8 +20,7 @@ export function Router() {
                 <Route path="/users/:id" element={<Layout><UserForm /></Layout>} />
                 <Route path="/requests" element={<Layout><UserRequests /></Layout>} />
                 <Route path="/requests/create" element={<Layout><UserRequestCreate /></Layout>} />
-
-            </Routes>
-        </FileInput.Root>
+            </Routes >
+        </FileFormContextProvider >
     );
 }

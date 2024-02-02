@@ -1,18 +1,18 @@
-import { ComponentProps, createContext, useId, useContext, useState, ReactNode } from "react"
+import { createContext, useId, useContext, useState, ReactNode } from "react"
 
-export type RootProps = ComponentProps<'div'> & {
+export type FileFormContextProviderProps = {
     children: ReactNode;
 }
 
-type FileInputContextType = {
+type FileFormContextType = {
     id: string;
     files: File[];
     onFilesSelected: (files: File[], multiple: boolean) => void;
 }
 
-const FileInputContext = createContext({} as FileInputContextType)
+const FileFormContext = createContext({} as FileFormContextType)
 
-export function Root(props: RootProps) {
+export function FileFormContextProvider({ children }: FileFormContextProviderProps) {
 
     const id = useId()
     const [files, setFiles] = useState<File[]>([])
@@ -27,11 +27,11 @@ export function Root(props: RootProps) {
     }
 
     return (
-        <FileInputContext.Provider value={{ id, files, onFilesSelected }}>
-            <div {...props} />
-        </FileInputContext.Provider>
+        <FileFormContext.Provider value={{ id, files, onFilesSelected }}>
+            {children}
+        </FileFormContext.Provider>
     )
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useFileInput = () => useContext(FileInputContext)
+export const useFileForm = () => useContext(FileFormContext)
