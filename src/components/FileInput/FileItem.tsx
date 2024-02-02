@@ -19,7 +19,7 @@ export function FileItem({ name, size }: FileItemProps) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
         >
-            <div className="rounded-full border-4 border-violet-200 p-2 text-violet-600">
+            <div className="rounded-full border-4 border-primary-25 p-2 text-primary-600">
                 <UploadCloud className="w-4 h-4" />
             </div>
             <div className="flex flex-1 flex-col items-start gap-1">
@@ -31,9 +31,9 @@ export function FileItem({ name, size }: FileItemProps) {
                 <div className="flex w-full items-center gap-3">
                     <div className="h-2 flex-1 rounded-full bg-zinc-100">
                         <motion.div
-                            className="h-2 w-4/5 rounded-full bg-violet-600"
+                            className="h-2 w-4/5 rounded-full bg-primary-500"
                             initial={{ width: 0 }}
-                            animate={{ width: "80%" }}
+                            animate={{ width: "100%" }}
                         />
                     </div>
                 </div>

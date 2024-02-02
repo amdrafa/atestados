@@ -1,5 +1,7 @@
 import { TableBody } from "./TableBody";
-import { TableCellStatus } from "./TableCelStatus";
+import { TableCellProfile } from "./TableCelProfile";
+import { TableCellRequestStatus } from "./TableCelRequestStatus";
+import { TableCellUserStatus } from "./TableCelStatus";
 import { TableCell } from "./TableCell";
 import { TableColumnHeaderCell } from "./TableColumnHeaderCell";
 import { TableColumnRow } from "./TableColumnRow";
@@ -15,5 +17,7 @@ export const Table = {
     ColumnHeaderCell: TableColumnHeaderCell,
     Body: TableBody,
     Cell: TableCell,
-    CellStatus: TableCellStatus,
+    CellUserStatus: TableCellUserStatus,
+    CellRequestStatus: TableCellRequestStatus,
+    CellProfile: TableCellProfile
 }

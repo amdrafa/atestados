@@ -6,7 +6,6 @@ import * as Input from '../Input';
 import * as Collapsible from '@radix-ui/react-collapsible';
 import { Button } from '../Button';
 import { motion } from 'framer-motion';
-import boschBar from '../../assets/bosch-bar.png'
 
 const buttonVariants = {
     pressed: { scale: 0.9 },

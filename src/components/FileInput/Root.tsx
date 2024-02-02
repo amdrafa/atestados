@@ -21,6 +21,7 @@ export function Root(props: RootProps) {
         } else {
             setFiles(files)
         }
+        // console.log(files)
     }
 
     return (

@@ -7,15 +7,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Select } from '../../components/Select/Index';
 import { SelectItem } from '../../components/Select/SelectItem';
-import { ArrowLeft, CheckSquare2 } from 'lucide-react';
 import { ProfileInfo } from '../../components/RequestProfile.tsx';
+import { PageDescription } from '../../shared/Page/PageDescription.tsx';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
-export function RequestDetail() {
+export function UserForm() {
 
-    const schema = z.object({
+    const navigate = useNavigate()
+
+    const userSchema = z.object({
         name: z.string().min(6, "O nome deve ter no mínimo 6 caracteres."),
         edv: z.number().min(6, "O último nome deve ter no mínimo 6 caracteres."),
         issuerName: z.string().email("Informe um e-mail válido"),
@@ -29,7 +32,7 @@ export function RequestDetail() {
         adminComment: z.string().max(400, "O nome deve ter no mínimo 6 caracteres.")
     });
 
-    type formDataTest = z.infer<typeof schema>
+    type userFormData = z.infer<typeof userSchema>
 
 
 
@@ -37,8 +40,8 @@ export function RequestDetail() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<formDataTest>({
-        resolver: zodResolver(schema),
+    } = useForm<userFormData>({
+        resolver: zodResolver(userSchema),
     });
 
     function handleSubmitTest(e: unknown) {
@@ -47,15 +50,16 @@ export function RequestDetail() {
 
     return (
         <Page.Root>
-            <Page.RequestHeader>
-                <div className='flex items-center gap-1'>
-                    <ArrowLeft />
-                    Request - 398472
-                </div>
-                <div className='flex justify-center text-boschGreen-500 text-xl items-center gap-1'>
-                    <CheckSquare2 />  Aprovada
-                </div>
-            </Page.RequestHeader>
+            <PageDescription>
+                <Page.DescriptionInfo
+                    title="Edit user"
+                    description="Update informations and authorizations here."
+                />
+                <Page.DescriptionActions>
+                    <Button type="button" variant="outline" onClick={() => navigate('/users')}>Cancel</Button>
+                    <Button type="submit" variant="primary">Save</Button>
+                </Page.DescriptionActions>
+            </PageDescription>
             <Page.Content>
                 <ProfileInfo
                     name='Rafael Amaro'
@@ -65,7 +69,7 @@ export function RequestDetail() {
                 />
                 <Form.Root onSubmit={handleSubmit(handleSubmitTest)}>
 
-                    {/* <Form.Grid>
+                    <Form.Grid>
                         <Form.Label htmlFor='name'>Name</Form.Label>
                         <Input.Root >
                             <Input.Control
@@ -77,32 +81,31 @@ export function RequestDetail() {
                         <Input.ErrorMessage>
                             {errors.name?.message}
                         </Input.ErrorMessage>
-                    </Form.Grid> */}
+                    </Form.Grid>
 
-                    {/* <Form.Grid>
+                    <Form.Grid>
                         <Form.Label htmlFor='edv'>EDV</Form.Label>
                         <Input.Root >
                             <Input.Control
                                 {...register('edv')}
                                 id="edv"
-                                type="text"
+                                type="number"
                             />
 
                         </Input.Root>
                         <Input.ErrorMessage>
                             {errors.edv?.message}
                         </Input.ErrorMessage>
-                    </Form.Grid> */}
+                    </Form.Grid>
 
                     <Form.Grid>
-                        <Form.Label htmlFor='issuerName'>Issuer's name</Form.Label>
+                        <Form.Label htmlFor='email'>E-mail</Form.Label>
                         <Input.Root >
                             <Input.Control
                                 {...register('issuerName')}
                                 id="issuerName"
-                                type="text"
-                                defaultValue={"Dr. Carlos Silva"}
-                                disabled
+                                type="email"
+                                defaultValue={"moa2jvl@bosch.com"}
                             />
                         </Input.Root>
                         <Input.ErrorMessage>
@@ -112,7 +115,7 @@ export function RequestDetail() {
 
 
                     <Form.Grid>
-                        <Form.Label htmlFor='council'>Council</Form.Label>
+                        <Form.Label htmlFor='council'>Location</Form.Label>
                         <Input.Root >
                             <Input.Control
                                 {...register('council')}
@@ -128,13 +131,13 @@ export function RequestDetail() {
                     </Form.Grid>
 
                     <Form.Grid>
-                        <Form.Label htmlFor='uf'>UF</Form.Label>
+                        <Form.Label htmlFor='uf'>Role</Form.Label>
                         <Select
                             {...register('uf')}
-                            placeholder="Select a country..."
+                            placeholder="Select a role..."
                         >
-                            <SelectItem value="SC" text="SC" />
-                            <SelectItem value="SP" text="SP" />
+                            <SelectItem value="admin" text="Admin" />
+                            <SelectItem value="user" text="User" />
                         </Select>
                         <Input.ErrorMessage>
                             {errors.uf?.message}
@@ -142,63 +145,20 @@ export function RequestDetail() {
                     </Form.Grid>
 
                     <Form.Grid>
-                        <Form.Label htmlFor='register'>Register</Form.Label>
-                        <Input.Root >
-                            <Input.Control
-                                {...register('register')}
-                                id="register"
-                                type="text"
-                                defaultValue={"31231421"}
-                                disabled
-                            />
-                        </Input.Root>
+                        <Form.Label htmlFor='uf'>Status</Form.Label>
+                        <Select
+                            {...register('uf')}
+                            placeholder="Select a status..."
+                        >
+                            <SelectItem value="active" text="Active" />
+                            <SelectItem value="inactive" text="Inactive" />
+                        </Select>
                         <Input.ErrorMessage>
-                            {errors.register?.message}
-                        </Input.ErrorMessage>
-                    </Form.Grid>
-
-                    <Form.Grid>
-                        <Form.Label htmlFor='leaveCommencement'>Commencement of leave</Form.Label>
-                        <Input.Root >
-                            <Input.Control
-                                {...register('leaveCommencement')}
-                                id="leaveCommencement"
-                                type="date"
-                            />
-                        </Input.Root>
-                        <Input.ErrorMessage>
-                            {errors.leaveCommencement?.message}
+                            {errors.uf?.message}
                         </Input.ErrorMessage>
                     </Form.Grid>
 
 
-                    <Form.Grid>
-                        <Form.Label htmlFor='leaveTermination'>Leave commencement</Form.Label>
-                        <Input.Root >
-                            <Input.Control
-                                {...register('leaveTermination')}
-                                id="leaveTermination"
-                                type="date"
-                            />
-                        </Input.Root>
-                        <Input.ErrorMessage>
-                            {errors.leaveTermination?.message}
-                        </Input.ErrorMessage>
-                    </Form.Grid>
-
-                    <Form.Grid>
-                        <Form.Label htmlFor='adminComment'>Comment</Form.Label>
-                        <Input.Root >
-                            <Input.TextArea
-                                {...register('adminComment')}
-                                id="adminComment"
-                                rows={5}
-                            />
-                        </Input.Root>
-                        <Input.ErrorMessage>
-                            {errors.name?.message}
-                        </Input.ErrorMessage>
-                    </Form.Grid>
 
                     {/* <div className='flex flex-col justify-center space-y-2'>
                         <Button type='submit' variant="green">Approve</Button>
@@ -207,11 +167,10 @@ export function RequestDetail() {
 
                     </div> */}
 
-                    <Page.Actions>
-                        <Button type='submit' variant="blue">Readjust</Button>
-                        <Button type='submit' variant="red">Reject permanently</Button>
-                        <Button type='submit' variant="green">Approve</Button>
-                    </Page.Actions>
+                    {/* <Page.Actions>
+                        <Button type='submit' variant="outline">Return</Button>
+                        <Button type='submit' variant="primary">Save</Button>
+                    </Page.Actions> */}
                 </Form.Root>
 
             </Page.Content>

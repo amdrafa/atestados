@@ -1,13 +1,8 @@
-import { ReactNode } from "react"
+import { ComponentProps } from "react"
 
-interface TableCellProps {
-    children: ReactNode
+interface TableCellProps extends ComponentProps<'td'> { }
+
+export function TableCell(props: TableCellProps) {
+    return <td className="py-2 px-4 text-left border-b" {...props} />
 }
 
-export function TableCell({ children }: TableCellProps) {
-    return (
-        <td className="py-2 px-4 text-left border-b">
-            {children}
-        </td>
-    )
-}
