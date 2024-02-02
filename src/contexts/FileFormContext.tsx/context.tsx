@@ -1,6 +1,8 @@
-import { ComponentProps, createContext, useId, useContext, useState } from "react"
+import { ComponentProps, createContext, useId, useContext, useState, ReactNode } from "react"
 
-export type RootProps = ComponentProps<'div'>
+export type RootProps = ComponentProps<'div'> & {
+    children: ReactNode;
+}
 
 type FileInputContextType = {
     id: string;

@@ -54,7 +54,7 @@ export function UserRequestCreate() {
         register: z.string(),
         leaveCommencement: z.string(),
         leaveTermination: z.string(),
-        // image: imageSchema
+        image: imageSchema
     });
 
     type newRequestFormData = z.infer<typeof newRequestSchema>
@@ -97,7 +97,6 @@ export function UserRequestCreate() {
                             <FileInput.Trigger />
                             <FileInput.FileList />
                             <FileInput.Control
-                                // onChange={e => setfiletest(e.target.files)}
                             />
                         </FileInput.Root>
                         {/* <Input.ErrorMessage>

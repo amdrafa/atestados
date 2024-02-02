@@ -16,7 +16,7 @@ export function Control({ multiple = false, ...props }: ControlProps) {
 
         onFilesSelected(files, multiple)
 
-        // console.log(files + 'aq')
+        console.log(files + 'aq')
     }
 
     return (
