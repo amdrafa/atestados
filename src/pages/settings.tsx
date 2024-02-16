@@ -1,8 +1,8 @@
 import * as Input from '../components/Input'
 import { Mail } from "lucide-react";
 import * as FileInput from '../components/FileInput'
-import { Select } from "../components/Select/Index";
-import { SelectItem } from "../components/Select/SelectItem";
+// import { Select } from "../components/Select/Index";
+// import { SelectItem } from "../components/Select/SelectItem";
 import { Button } from "../components/Button";
 import { Page } from "../shared/Page";
 import { PageDescription } from "../shared/Page/PageDescription";
@@ -87,21 +87,21 @@ export function Home() {
 
                     <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
                         <label htmlFor="country" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Country</label>
-                        <Select placeholder="Select a country...">
+                        {/* <Select placeholder="Select a country...">
                             <SelectItem value="br" text="Brazil" />
                             <SelectItem value="us" text="United States" />
-                        </Select>
+                        </Select> */}
                     </div>
 
                     <div className="grid gap-3 pt-5 ">
                         <label htmlFor="country" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Timezone</label>
-                        <Select placeholder="Select a timezone...">
+                        {/* <Select placeholder="Select a timezone...">
                             <SelectItem
                                 value="utc8"
                                 text="Pacific Standard Time (UTC-08:00)"
                             />
                             <SelectItem value="utc3" text="America São Paulo (UTC-03:00)" />
-                        </Select>
+                        </Select> */}
                     </div>
 
                     <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">

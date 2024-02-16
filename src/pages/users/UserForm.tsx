@@ -5,8 +5,8 @@ import { Page } from "../../shared/Page";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Select } from '../../components/Select/Index';
-import { SelectItem } from '../../components/Select/SelectItem';
+// import { Select } from '../../components/Select/Index';
+// import { SelectItem } from '../../components/Select/SelectItem';
 import { ProfileInfo } from '../../components/RequestProfile.tsx';
 import { PageDescription } from '../../shared/Page/PageDescription.tsx';
 import { useNavigate } from 'react-router-dom';
@@ -130,7 +130,7 @@ export function UserForm() {
                         </Input.ErrorMessage>
                     </Form.Grid>
 
-                    <Form.Grid>
+                    {/* <Form.Grid>
                         <Form.Label htmlFor='uf'>Role</Form.Label>
                         <Select
                             {...register('uf')}
@@ -142,9 +142,9 @@ export function UserForm() {
                         <Input.ErrorMessage>
                             {errors.uf?.message}
                         </Input.ErrorMessage>
-                    </Form.Grid>
+                    </Form.Grid> */}
 
-                    <Form.Grid>
+                    {/* <Form.Grid>
                         <Form.Label htmlFor='uf'>Status</Form.Label>
                         <Select
                             {...register('uf')}
@@ -156,7 +156,7 @@ export function UserForm() {
                         <Input.ErrorMessage>
                             {errors.uf?.message}
                         </Input.ErrorMessage>
-                    </Form.Grid>
+                    </Form.Grid> */}
 
 
 
